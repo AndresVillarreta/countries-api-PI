@@ -1,2 +1,3 @@
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_PAGINATION = "GET_PAGINATION";
+export const GET_THIS_PAGE = "GET_THIS_PAGE";

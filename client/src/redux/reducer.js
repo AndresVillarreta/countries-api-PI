@@ -2,6 +2,8 @@ import { GET_COUNTRIES } from "./actions-types";
 
 const initialState = {
   countries: [],
+  pagination: 1,
+  thisPage: 1,
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,6 +12,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         countries: action.payload,
+        pagination: Math.ceil(action.payload.length / 10),
       };
     }
     default:

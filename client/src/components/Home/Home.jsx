@@ -5,42 +5,37 @@ import filter from "../../assets/filter.svg";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getCountries } from "../../redux/actions";
 
 export default function Home() {
   const [option, setOptions] = useState(true);
-  const [countries, setCountries] = useState([]);
   const [showCountries, setShowCountries] = useState([]);
-  const [pagination, setPagination] = useState(1);
   const [thisPage, setThisPage] = useState(1);
+
+  const dispatch = useDispatch();
+  const { countries, pagination } = useSelector((state) => state);
   const openOptions = (event) => {
     setOptions(!option);
   };
   useEffect(() => {
-    getCountries();
-    console.log(thisPage);
+    const fetchData = async () => {
+      await dispatch(getCountries());
+    };
+    fetchData();
   }, []);
-  async function getCountries() {
-    try {
-      const { data } = await axios.get("http://localhost:3001/countries");
-      if (!data) {
-        console.log("error");
-      } else {
-        await setCountries(data);
-        await setShowCountries(data.slice(0, 10));
-        await setPagination(Math.ceil(data.length / 10));
-        console.log(pagination);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const changePage = (e) => {
-    console.log(thisPage);
-    setThisPage(Number(e.target.value));
+  useEffect(() => {
+    setShowCountries(countries.slice(0, 10));
+  }, [countries]);
+  useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
-    console.log(operationA, operationB);
     setShowCountries(countries.slice(operationA, operationB));
+  }, [thisPage]);
+
+  const changePage = (e) => {
+    const newPage = Number(e.target.value);
+    setThisPage(newPage);
   };
   return (
     <div className={styleH.container}>

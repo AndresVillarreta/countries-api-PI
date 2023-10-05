@@ -8,7 +8,7 @@ export function getCountries() {
       if (!data) {
         console.log("error");
       } else {
-        dispatch({
+        return dispatch({
           type: GET_COUNTRIES,
           payload: data,
         });
