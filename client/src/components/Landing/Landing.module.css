@@ -3,6 +3,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: spawnIn 0.8s ease-in-out forwards;
+}
+@keyframes spawnIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .presentation {
   display: flex;
@@ -78,6 +87,7 @@
   align-items: center;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
   padding-right: 2vw;
+  min-width: 80%;
 }
 .space {
   width: 40vw;
@@ -93,7 +103,7 @@
 .space p {
   max-width: 20vw;
   width: 18vw;
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 .logoBG {
@@ -114,6 +124,94 @@
   }
 }
 .flag {
-  width: 17vw;
-  height: 10vw;
+  width: 15vw;
+  height: 8vw;
+}
+
+.about_container {
+  display: flex;
+  width: 100vw;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 10vw;
+}
+.about_space {
+  background: #f4f4f4;
+  display: flex;
+  border-radius: 60px 0px 0px 60px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 45vw;
+  width: 80vw;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+.selfie {
+  width: 30vw;
+  margin: 3vw;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  border: #6794c9 3px solid;
+  background: linear-gradient(0deg, #ffffff, #0aa5ff38);
+}
+.about_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2vw;
+  text-align: center;
+}
+.about_text h1 {
+  color: #34669e;
+  font-size: 4vw;
+}
+.about_text p {
+  font-size: 1.5vw;
+}
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 20vw;
+  background: #34669e;
+  color: white;
+}
+p {
+  margin: 0;
+}
+.contact_footer h2 {
+  font-size: 3vw;
+}
+.contact_footer p {
+  font-size: 1.5vw;
+}
+.scroll {
+  position: fixed;
+  width: 4vw;
+  bottom: 2vw;
+  right: 2vw;
+  animation: scrollSpawn 1s ease;
+  color: #ffffff;
+  fill: #ffffff;
+  cursor: pointer;
+  background: #7cb2f0;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+.scroll:hover {
+  background: #6794c9;
+}
+@keyframes scrollSpawn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.noScroll {
+  position: fixed;
 }

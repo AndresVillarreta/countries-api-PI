@@ -1,17 +1,17 @@
+import { GET_COUNTRIES } from "./actions-types";
+
 const initialState = {
-  count: 0,
+  countries: [],
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case "INCREMENT":
+    case GET_COUNTRIES: {
       return {
-        count: state.count + 1,
+        ...state,
+        countries: action.payload,
       };
-    case "DECREMENT":
-      return {
-        count: state.count - 1,
-      };
+    }
     default:
       return state;
   }
