@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.presentation {
+  display: flex;
+  width: 89vw;
+  height: 63vh;
+  background: #f4f4f4;
+  margin-top: 8vh;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 66px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  min-height: 520px;
+}
+.svg {
+  width: 35vw;
+  height: auto;
+  max-width: 500px;
+}
+.description {
+  width: 30vw;
+  text-align: center;
+  font-size: 1.9vw;
+}
+.title {
+  text-align: center;
+  color: #34669e;
+  margin-bottom: 3vw;
+}
+.button {
+  background-color: #34669e;
+  border: none;
+  color: white;
+  background: #6794c9;
+  width: 28vw;
+  height: 5vw;
+  border-radius: 30px;
+  font-family: "Overpass Mono", monospace;
+  font-size: 3.5vw;
+  margin-top: 3vw;
+  max-height: 75px;
+  cursor: pointer;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.svgArrow {
+  width: 6vw;
+  transform: rotate(180deg);
+  margin-top: 4vw;
+  opacity: 0.7;
+}
+.title_text h1 {
+  text-align: center;
+  font-size: 5vw;
+  color: #34669e;
+}
+
+.how_container {
+  display: flex;
+
+  width: 100%;
+}
+.how_space {
+  background: #f4f4f4;
+  width: 80vw;
+  height: 45vw;
+  border-radius: 0px 60px 60px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  padding-right: 2vw;
+}
+.space {
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2vw;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.space p {
+  max-width: 20vw;
+  width: 18vw;
+  font-size: 2vw;
+}
+
+.logoBG {
+  position: fixed;
+  width: 100vw;
+  right: -50vw;
+  bottom: -70vw;
+  z-index: -3;
+  opacity: 0.2;
+  animation: logoRotation 300s infinite linear;
+}
+@keyframes logoRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.flag {
+  width: 17vw;
+  height: 10vw;
+}
