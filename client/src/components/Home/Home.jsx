@@ -4,38 +4,70 @@ import options from "../../assets/options.svg";
 import filter from "../../assets/filter.svg";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import {
+  getCountries,
+  filterRegion,
+  sortCountries,
+  getPage,
+} from "../../redux/actions";
 
 export default function Home() {
   const [option, setOptions] = useState(true);
-  const [showCountries, setShowCountries] = useState([]);
   const [thisPage, setThisPage] = useState(1);
+  const [sorted, setSorted] = useState(false);
+  const [pagination, setPagination] = useState(1);
+  const [countriesList, setCountriesList] = useState([]);
 
   const dispatch = useDispatch();
-  const { countries, pagination } = useSelector((state) => state);
-  const openOptions = (event) => {
+  const { countries, pages, pageSaved, qlq } = useSelector((state) => state);
+
+  const openOptions = () => {
     setOptions(!option);
   };
+
   useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getCountries());
-    };
-    fetchData();
+    dispatch(getCountries());
   }, []);
-  useEffect(() => {
-    setShowCountries(countries.slice(0, 10));
-  }, [countries]);
+
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
-    setShowCountries(countries.slice(operationA, operationB));
+    setCountriesList(pages.slice(operationA, operationB));
+    setPagination(Math.ceil(pages.length / 10));
+  }, [countries]);
+
+  useEffect(() => {
+    const operationA = thisPage * 10 - 10;
+    const operationB = thisPage * 10;
+    setCountriesList(pages.slice(operationA, operationB));
   }, [thisPage]);
+
+  useEffect(() => {
+    const operationA = thisPage * 10 - 10;
+    const operationB = thisPage * 10;
+    setPagination(Math.ceil(pages.length / 10));
+    setCountriesList(pages.slice(operationA, operationB));
+  }, [pages]);
+
+  useEffect(() => {
+    console.log(pagination);
+  }, [pagination]);
 
   const changePage = (e) => {
     const newPage = Number(e.target.value);
     setThisPage(newPage);
+  };
+  const orderByRegion = (e) => {
+    dispatch(filterRegion(e.target.value));
+    setPagination(Math.ceil(pages.length / 10));
+    setThisPage(1);
+  };
+  const orderCountries = (e) => {
+    setThisPage(1);
+    dispatch(sortCountries(e.target.value));
+    setPagination(Math.ceil(pages.length / 10));
+    setSorted(!sorted);
   };
   return (
     <div className={styleH.container}>
@@ -56,14 +88,13 @@ export default function Home() {
               <img srcSet={filter} alt="filter" width={"40px"} />
               <div className={styleH.space_filter}>
                 <p>Filter by Region</p>
-                <select>
+                <select onChange={orderByRegion}>
                   <option value="all">All</option>
                   <option value="Africa">Africa</option>
                   <option value="Asia">Asia</option>
                   <option value="Europe">Europe</option>
-                  <option value="North America">North America</option>
+                  <option value="Americas">America</option>
                   <option value="Oceania">Oceania</option>
-                  <option value="South America">South America</option>
                 </select>
               </div>
             </div>
@@ -91,11 +122,11 @@ export default function Home() {
               <img srcSet={filter} alt="filter" width={"40px"} />
               <div className={styleH.space_filter}>
                 <p>Order by</p>
-                <select>
-                  <option value="all">All</option>
-                  <option value="Ascendent">Ascendent</option>
-                  <option value="Descendent">Descendent</option>
-                  <option value="Alphabetic">Alphabetic</option>
+                <select onChange={orderCountries}>
+                  <option value="all">Filtrar</option>
+                  <option value="asc">Ascendent</option>
+                  <option value="desc">Descendent</option>
+                  <option value="alpha">Alphabetic</option>
                   <option value="Poblation">Poblation</option>
                 </select>
               </div>
@@ -110,7 +141,7 @@ export default function Home() {
             <img src={search} alt="search" />
           </div>
           <div className={styleH.card_container}>
-            {showCountries.map((country) => (
+            {countriesList?.map((country) => (
               <Card
                 key={country.id}
                 img={country.flag}
@@ -127,7 +158,7 @@ export default function Home() {
             ) : (
               ""
             )}
-            {thisPage === pagination && pagination > 1 ? (
+            {thisPage > 3 && thisPage <= pagination ? (
               <button value={1} onClick={changePage}>
                 1
               </button>
