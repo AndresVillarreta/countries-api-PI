@@ -9,7 +9,7 @@ import {
   getCountries,
   filterRegion,
   sortCountries,
-  getPage,
+  onSearch,
 } from "../../redux/actions";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
   const [countriesList, setCountriesList] = useState([]);
 
   const dispatch = useDispatch();
-  const { countries, pages, pageSaved, qlq } = useSelector((state) => state);
+  const { countries, pages } = useSelector((state) => state);
 
   const openOptions = () => {
     setOptions(!option);
@@ -68,6 +68,20 @@ export default function Home() {
     dispatch(sortCountries(e.target.value));
     setPagination(Math.ceil(pages.length / 10));
     setSorted(!sorted);
+  };
+
+  const handleSearch = (e) => {
+    dispatch(onSearch(e.target.value));
+    setThisPage(1);
+  };
+  const clickSearch = (e) => {
+    console.log(e.target.value);
+    if (!e.target.value) {
+      return;
+    } else {
+      dispatch(onSearch(e.target.value));
+      setThisPage(1);
+    }
   };
   return (
     <div className={styleH.container}>
@@ -137,8 +151,8 @@ export default function Home() {
       <div className={styleH.main}>
         <div className={styleH.main_container}>
           <div className={styleH.search_bar}>
-            <input type="text" placeholder="Search" />
-            <img src={search} alt="search" />
+            <input type="text" placeholder="Search" onChange={handleSearch} />
+            <img src={search} alt="search" onClick={clickSearch} />
           </div>
           <div className={styleH.card_container}>
             {countriesList?.map((country) => (

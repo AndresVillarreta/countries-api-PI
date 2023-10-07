@@ -3,6 +3,7 @@ import {
   FILTER_BY_REGION,
   SORT_COUNTRIES,
   GET_PAGINATION,
+  SEARCH,
 } from "./actions-types";
 import axios from "axios";
 
@@ -42,5 +43,25 @@ export function sortCountries(country) {
   return {
     type: SORT_COUNTRIES,
     payload: country,
+  };
+}
+
+export function onSearch(country) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/countries?name=${country}`
+      );
+      if (!data) {
+        console.log("error");
+      } else {
+        return dispatch({
+          type: SEARCH,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
   };
 }

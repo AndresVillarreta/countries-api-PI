@@ -3,13 +3,13 @@ import {
   FILTER_BY_REGION,
   SORT_COUNTRIES,
   GET_PAGINATION,
+  SEARCH,
 } from "./actions-types";
 
 const initialState = {
   countries: [],
   pagination: 1,
   pages: [],
-  pageSaved: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,7 +20,6 @@ export default function reducer(state = initialState, action) {
         countries: action.payload,
         pagination: Math.ceil(action.payload.length / 10),
         pages: action.payload,
-        pageSaved: action.payload,
       };
     }
     case FILTER_BY_REGION: {
@@ -38,7 +37,6 @@ export default function reducer(state = initialState, action) {
           if (action.payload === "Oceania") return country.region === "Oceania";
         }),
         pagination: Math.ceil(state.pages.length / 10),
-        pageSaved: state.pages,
       };
     }
     case SORT_COUNTRIES: {
@@ -57,6 +55,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         pages: [...state.countries].slice(action.payload[0], action.payload[1]),
+      };
+    }
+
+    case SEARCH: {
+      return {
+        ...state,
+        pages: action.payload,
       };
     }
 
