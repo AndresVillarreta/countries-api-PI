@@ -158,6 +158,7 @@ export default function Home() {
             {countriesList?.map((country) => (
               <Card
                 key={country.id}
+                id={country.id}
                 img={country.flag}
                 name={country.name}
                 region={country.region}
