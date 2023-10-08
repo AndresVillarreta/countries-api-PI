@@ -10,6 +10,7 @@ const cFiltered = countries.countries.map((country) => {
     capital: country.capital ? country.capital[0] : "None",
     area: country.area,
     population: country.population,
+    map: country.maps.googleMaps,
   };
 });
 

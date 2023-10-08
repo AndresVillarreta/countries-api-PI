@@ -40,19 +40,15 @@ export default function Home() {
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
-    setCountriesList(pages.slice(operationA, operationB));
-  }, [thisPage]);
-
-  useEffect(() => {
-    const operationA = thisPage * 10 - 10;
-    const operationB = thisPage * 10;
     setPagination(Math.ceil(pages.length / 10));
     setCountriesList(pages.slice(operationA, operationB));
   }, [pages]);
 
   useEffect(() => {
-    console.log(pagination);
-  }, [pagination]);
+    const operationA = thisPage * 10 - 10;
+    const operationB = thisPage * 10;
+    setCountriesList(pages.slice(operationA, operationB));
+  }, [thisPage]);
 
   const changePage = (e) => {
     const newPage = Number(e.target.value);
