@@ -3,4 +3,3 @@ export const GET_PAGINATION = "GET_PAGINATION";
 export const FILTER_BY_REGION = "FILTER_BY_REGION";
 export const SORT_COUNTRIES = "SORT_COUNTRIES";
 export const SEARCH = "SEARCH";
-export const GET_DETAIL = "GET_DETAIL";

@@ -4,14 +4,12 @@ import {
   SORT_COUNTRIES,
   GET_PAGINATION,
   SEARCH,
-  GET_DETAIL,
 } from "./actions-types";
 
 const initialState = {
   countries: [],
   pagination: 1,
   pages: [],
-  detail: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -64,12 +62,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         pages: action.payload,
-      };
-    }
-    case GET_DETAIL: {
-      return {
-        ...state,
-        detail: action.payload,
       };
     }
 

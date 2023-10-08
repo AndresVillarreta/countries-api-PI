@@ -4,7 +4,6 @@ import {
   SORT_COUNTRIES,
   GET_PAGINATION,
   SEARCH,
-  GET_DETAIL,
 } from "./actions-types";
 import axios from "axios";
 
@@ -63,24 +62,6 @@ export function onSearch(country) {
       }
     } catch (error) {
       console.error("Error", error);
-    }
-  };
-}
-
-export function getDetail(id) {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
-      if (!data) {
-        console.log("error");
-      } else {
-        return dispatch({
-          type: GET_DETAIL,
-          payload: data,
-        });
-      }
-    } catch (error) {
-      console.log(error);
     }
   };
 }
