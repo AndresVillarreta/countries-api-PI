@@ -1,0 +1,125 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 92.5vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.info2 {
+  width: 100%;
+  display: flex;
+  justify-self: end;
+  background: white;
+  height: 70vh;
+  align-items: center;
+  justify-content: end;
+  border-radius: 60px 0px 0px 60px;
+  box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.2);
+}
+.info_content {
+  background: #d9d9d9;
+  width: 95%;
+  height: 90%;
+  display: grid;
+  border-radius: 20px 0px 0px 20px;
+  grid-template-columns: 1fr 2fr;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  background: white;
+  height: 60%;
+  align-self: center;
+  border-radius: 30px;
+  box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.2);
+}
+.img h2 {
+  font-size: 3vw;
+}
+.img img {
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  height: 80%;
+  width: 80%;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.2);
+}
+.content h2 {
+  font-size: 3vw;
+}
+.content p {
+  font-size: 1.5vw;
+  text-align: center;
+}
+.bg_img {
+  position: fixed;
+  z-index: -4;
+  opacity: 0.3;
+  width: 100%;
+  left: 50vw;
+  top: 60vh;
+  animation: movement 300s infinite linear;
+}
+@keyframes movement {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.info {
+  background: white;
+  width: 90%;
+  height: 75%;
+  border-radius: 0px 60px 60px 0px;
+  box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activity {
+  background: #d9d9d9;
+  width: 27vw;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+.activity h3 {
+  font-size: 2vw;
+  margin: 2px;
+  padding: 0;
+}
+.activity p {
+  font-size: 1.5vw;
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-size: 1rem;
+}
+.duration {
+  font-weight: bold;
+}
+.activities_box {
+  overflow-y: auto;
+  height: 75%;
+}

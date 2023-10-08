@@ -27,6 +27,10 @@ export default function Nav() {
       behavior: "smooth",
     });
   };
+  const comeBack = () => {
+    if (location.pathname === "/home") return true;
+    if (location.pathname.includes("/country")) return false;
+  };
   return (
     <div className={styleNav.container}>
       <div className={styleNav.logo}>COUNTRIES API</div>
@@ -38,11 +42,8 @@ export default function Nav() {
           <p>Sobre mi</p>
         </NavLink>
       </div>
-      <div
-        className={info ? styleNav.noLinks : styleNav.links2}
-        onClick={() => navigate("/")}
-      >
-        <NavLink to="/" className={styleNav.nl2}>
+      <div className={info ? styleNav.noLinks : styleNav.links2}>
+        <NavLink className={styleNav.nl2} to={comeBack() ? "/" : "/home"}>
           <p>Volver</p>
         </NavLink>
       </div>
