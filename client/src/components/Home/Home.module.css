@@ -213,3 +213,22 @@ option {
   cursor: initial !important;
   color: black !important;
 }
+
+.create_activity {
+  width: 100%;
+}
+.option_button {
+  width: 22vw;
+  height: 5vh;
+  background: rgb(42, 143, 238);
+  border: none;
+  cursor: pointer;
+  font-size: 1.5vw;
+}
+.no_option {
+  width: 22vw;
+  height: 5vh;
+  background: rgb(42, 143, 238);
+  border: none;
+  font-size: 1.5vw;
+}

@@ -34,8 +34,8 @@ export default function reducer(state = initialState, action) {
           if (action.payload === "Europe") return country.region === "Europe";
           if (action.payload === "Americas")
             return country.region === "Americas";
-          if (action.payload === "Americas")
-            return country.region === "Americas";
+          if (action.payload === "South America")
+            return country.subregion === "South America";
           if (action.payload === "Oceania") return country.region === "Oceania";
         }),
         pagination: Math.ceil(state.pages.length / 10),
@@ -47,7 +47,6 @@ export default function reducer(state = initialState, action) {
         pages: [...state.pages].sort((a, b) => {
           if (action.payload === "asc") return a.name.localeCompare(b.name);
           if (action.payload === "desc") return b.name.localeCompare(a.name);
-          if (action.payload === "alpha") return a.id.localeCompare(b.id);
           if (action.payload === "Poblation")
             return a.population - b.population;
         }),

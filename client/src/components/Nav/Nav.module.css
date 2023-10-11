@@ -9,6 +9,7 @@
   background: #edecec;
   box-shadow: 10px 0px 30px 0px rgba(0, 0, 0, 0.2);
   font-family: "Overpass Mono", monospace;
+  z-index: 4;
 }
 .links {
   display: flex;

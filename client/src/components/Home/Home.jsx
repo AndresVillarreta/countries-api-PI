@@ -11,6 +11,7 @@ import {
   sortCountries,
   onSearch,
 } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [option, setOptions] = useState(true);
@@ -20,6 +21,7 @@ export default function Home() {
   const [countriesList, setCountriesList] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { countries, pages } = useSelector((state) => state);
 
   const openOptions = () => {
@@ -104,6 +106,7 @@ export default function Home() {
                   <option value="Asia">Asia</option>
                   <option value="Europe">Europe</option>
                   <option value="Americas">America</option>
+                  <option value="South America">South America</option>
                   <option value="Oceania">Oceania</option>
                 </select>
               </div>
@@ -133,14 +136,21 @@ export default function Home() {
               <div className={styleH.space_filter}>
                 <p>Order by</p>
                 <select onChange={orderCountries}>
-                  <option value="all">Filtrar</option>
+                  <option value="every">Filter</option>
                   <option value="asc">Ascendent</option>
                   <option value="desc">Descendent</option>
-                  <option value="alpha">Alphabetic</option>
                   <option value="Poblation">Poblation</option>
                 </select>
               </div>
             </div>
+          </div>
+          <div className={styleH.create_activity}>
+            <button
+              className={option ? styleH.option_button : styleH.no_option}
+              onClick={() => navigate("/create")}
+            >
+              Create Activity
+            </button>
           </div>
         </div>
       </div>
@@ -151,15 +161,19 @@ export default function Home() {
             <img src={search} alt="search" onClick={clickSearch} />
           </div>
           <div className={styleH.card_container}>
-            {countriesList?.map((country) => (
-              <Card
-                key={country.id}
-                id={country.id}
-                img={country.flag}
-                name={country.name}
-                region={country.region}
-              />
-            ))}
+            {!pages ? (
+              <>LOADING</>
+            ) : (
+              countriesList?.map((country) => (
+                <Card
+                  key={country.id}
+                  id={country.id}
+                  img={country.flag}
+                  name={country.name}
+                  region={country.region}
+                />
+              ))
+            )}
           </div>
           <div className={styleH.pagination}>
             {thisPage > 1 ? (
