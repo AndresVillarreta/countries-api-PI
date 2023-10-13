@@ -3,7 +3,8 @@ import worldbg from "../../assets/world_hero.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCountries } from "../../redux/actions";
-import useForm from "./useForm";
+import axios from "axios";
+
 export default function Form() {
   const { countries } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function Form() {
     countries: [],
   });
   const [errors, setErrors] = useState({});
+  const [errorCountry, setErrorCountry] = useState(false);
 
   useEffect(() => {
     dispatch(getCountries());
@@ -38,14 +40,35 @@ export default function Form() {
     });
   };
 
+  useEffect(() => {
+    if (selectedCountries.length === 0) {
+      setErrorCountry(() => true);
+    } else {
+      setErrorCountry(() => false);
+    }
+  }, [selectedCountries]);
+
   const submitActivity = (e) => {
     e.preventDefault();
     const val = validation(form);
-    if (val) {
-      console.log(val);
+    if (val === true) {
+      postActivity();
+    } else {
+      console.log(val, "no");
     }
   };
 
+  const postActivity = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/activities", {
+        ...form,
+        difficulty: Number(form.difficulty),
+      });
+      window.alert(response.data.Success);
+    } catch (error) {
+      window.alert(error);
+    }
+  };
   const deleteCountry = (event) => {
     setSelectedCountries(
       selectedCountries.filter((e) => e !== event.target.textContent)
@@ -62,14 +85,16 @@ export default function Form() {
     setForm((prev) => {
       return {
         ...prev,
-        [e.target.name]: e.target.name,
+        [e.target.name]: e.target.value,
       };
     });
+    setErrors(
+      validation({
+        ...form,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
-
-  useEffect(() => {
-    setErrors(validation(form));
-  }, [form]);
 
   return (
     <div className={styleF.container}>
@@ -110,7 +135,11 @@ export default function Form() {
             </select>
             <label htmlFor="countries">
               Countries
-              {errors.countries ? <span>{errors.countries}</span> : ""}
+              {errorCountry ? (
+                <span>You must have almost one Country</span>
+              ) : (
+                ""
+              )}
             </label>
             <select
               name="countries"
@@ -145,6 +174,9 @@ const validation = ({ name, difficulty, duration, season, countries }) => {
   if (name.length === 0) {
     errors.name = "Must to have a name";
   }
+  if (name.length > 50) {
+    errors.name = "Must to have a name less than 50";
+  }
   if (!difficulty) {
     errors.difficulty = "Must to have a difficulty";
   }
@@ -157,10 +189,9 @@ const validation = ({ name, difficulty, duration, season, countries }) => {
   if (!duration) {
     errors.duration = "Must to have a duration";
   }
-  if (!season) {
+  if (!season || season === "Select") {
     errors.season = "Must to have a season";
   }
-  console.log(errors.countries);
   if (countries.length === 0) {
     errors.countries = "Must to have at least one country";
   }
