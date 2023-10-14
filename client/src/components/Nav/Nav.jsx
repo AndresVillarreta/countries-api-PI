@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function Nav() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [info, setInfo] = useState(false);
 

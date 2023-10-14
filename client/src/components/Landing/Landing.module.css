@@ -215,3 +215,34 @@ p {
 .noScroll {
   position: fixed;
 }
+
+@media screen and (max-width: 500px) {
+  .presentation {
+    width: 100%;
+    height: fit-content;
+    border-radius: 50px 0px 0px 0px;
+    flex-direction: column-reverse;
+  }
+  .svg {
+    width: 100%;
+  }
+  .title {
+    margin-top: 10vh;
+  }
+  .description {
+    width: 90%;
+    font-size: 5vw;
+  }
+  .button {
+    font-size: 8vw;
+    margin-top: 30px;
+    height: 8vh;
+    width: 90%;
+  }
+  .scroll {
+    display: none;
+  }
+  .noScroll {
+    display: none;
+  }
+}

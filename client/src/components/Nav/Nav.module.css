@@ -63,3 +63,18 @@
 .logo:hover {
   color: #747bff;
 }
+
+@media screen and (max-width: 500px) {
+  .links {
+    display: none;
+  }
+  .logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    align-items: center;
+    justify-content: center;
+  }
+}

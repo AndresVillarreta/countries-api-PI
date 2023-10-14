@@ -42,10 +42,9 @@ export default function Landing() {
         <div className={styleL.text}>
           <h1 className={styleL.title}>¡Bienvenid@s!</h1>
           <p className={styleL.description}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque
-            officiis cumque dolore consequatur, sed tempora alias unde modi
-            pariatur iure consectetur enim illum fugiat nihil quia nesciunt non
-            dignissimos porro.
+            Esta es una API en la que puedes ver y saber un poco mas de
+            informacion Sobre los paises. Ademas, también podras crear tus
+            propias actividades para los paises. ¡Disfrutalo!
           </p>
           <button className={styleL.button}>
             <NavLink

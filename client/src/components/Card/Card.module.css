@@ -1,9 +1,9 @@
 .card_container {
   background: white;
-  width: 12vw;
+  width: 20%;
   max-width: 100px;
   min-width: 70px;
-  height: 11vw;
+  height: 20%;
   padding: 10px;
   display: flex;
   flex-direction: column;
