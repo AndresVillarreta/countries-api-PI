@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import search from "../../assets/search.svg";
 import { useEffect, useState } from "react";
+import usePagination from "./hooks/usePagination";
+import useSearch from "./hooks/useSearch";
 
 export default function Cards() {
-  const [thisPage, setThisPage] = useState(1);
-  const [pagination, setPagination] = useState(1);
+  const { thisPage, pagination, changePage } = usePagination();
+  const { handleSearch, clickSearch } = useSearch();
+
   const [countriesList, setCountriesList] = useState([]);
   const dispatch = useDispatch();
   const { countries, pages } = useSelector((state) => state);
@@ -15,40 +18,24 @@ export default function Cards() {
   useEffect(() => {
     dispatch(getCountries());
   }, []);
+
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
     setCountriesList(pages.slice(operationA, operationB));
-    setPagination(Math.ceil(pages.length / 10));
   }, [countries]);
+
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
-    setPagination(Math.ceil(pages.length / 10));
     setCountriesList(pages.slice(operationA, operationB));
   }, [pages]);
+
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
     setCountriesList(pages.slice(operationA, operationB));
   }, [thisPage]);
-  const changePage = (e) => {
-    const newPage = Number(e.target.value);
-    setThisPage(newPage);
-  };
-  const handleSearch = (e) => {
-    dispatch(onSearch(e.target.value));
-    setThisPage(1);
-  };
-  const clickSearch = (e) => {
-    console.log(e.target.value);
-    if (!e.target.value) {
-      return;
-    } else {
-      dispatch(onSearch(e.target.value));
-      setThisPage(1);
-    }
-  };
 
   return (
     <div className={styleC.main}>
