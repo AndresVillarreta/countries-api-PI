@@ -1,6 +1,5 @@
 import styleC from "./Cards.module.css";
 import { getCountries, onSearch } from "../../redux/actions";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import search from "../../assets/search.svg";

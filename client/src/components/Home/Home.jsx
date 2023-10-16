@@ -12,6 +12,7 @@ import {
   onSearch,
 } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import Cards from "../Cards/Cards";
 
 export default function Home() {
   const [option, setOptions] = useState(true);
@@ -150,80 +151,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className={styleH.main}>
-        <div className={styleH.main_container}>
-          <div className={styleH.search_bar}>
-            <input type="text" placeholder="Search" onChange={handleSearch} />
-            <img src={search} alt="search" onClick={clickSearch} />
-          </div>
-          <div className={styleH.card_container}>
-            {!pages ? (
-              <>LOADING</>
-            ) : (
-              countriesList?.map((country) => (
-                <Card
-                  key={country.id}
-                  id={country.id}
-                  img={country.flag}
-                  name={country.name}
-                  region={country.region}
-                />
-              ))
-            )}
-          </div>
-          <div className={styleH.pagination}>
-            {thisPage > 1 ? (
-              <button value={thisPage - 1} onClick={changePage}>
-                &lt;
-              </button>
-            ) : (
-              ""
-            )}
-            {thisPage > 3 && thisPage <= pagination ? (
-              <button value={1} onClick={changePage}>
-                1
-              </button>
-            ) : (
-              ""
-            )}
-            {/* {thisPage > 1 ? <button>{thisPage - 1}</button> : ""} */}
-            <button className={styleH.thispage}>{thisPage}</button>
-            {thisPage + 1 <= pagination ? (
-              <button value={thisPage + 1} onClick={changePage}>
-                {thisPage + 1}
-              </button>
-            ) : (
-              ""
-            )}
-            {thisPage + 2 < pagination ? (
-              <button value={thisPage + 2} onClick={changePage}>
-                {thisPage + 2}
-              </button>
-            ) : (
-              ""
-            )}
-            {thisPage + 3 < pagination ? (
-              <button className={styleH.more_page}>...</button>
-            ) : (
-              ""
-            )}
-            {thisPage + 1 < pagination ? (
-              <button value={pagination} onClick={changePage}>
-                {pagination}
-              </button>
-            ) : (
-              ""
-            )}
-            {thisPage < pagination ? (
-              <button value={thisPage + 1} onClick={changePage}>
-                &gt;
-              </button>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </div>
+      <Cards />
     </div>
   );
 }
