@@ -60,53 +60,6 @@ export default function Landing() {
         <img srcSet={arrow} alt="Arrow" className={styleL.svgArrow} />
       </div>
       <div className={styleL.title_text}>
-        <h1>¿Como funciona?</h1>
-      </div>
-      <div className={styleL.how_container} id="how">
-        <div className={styleL.how_space}>
-          <div className={styleL.space}>
-            <img
-              src="https://flagcdn.com/w320/ve.png"
-              alt="vzla flag"
-              className={styleL.flag}
-            />
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
-              rerum atque optio neque
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, eos
-              maiores magni impedit
-            </p>
-            <img
-              src="https://flagcdn.com/w320/ar.png"
-              alt="Argentina"
-              className={styleL.flag}
-            />
-          </div>
-          <div className={styleL.space}>
-            <img
-              src="https://flagcdn.com/w320/ve.png"
-              alt="vzla flag"
-              className={styleL.flag}
-            />
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
-              rerum atque optio neque
-            </p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, eos
-              maiores magni impedit
-            </p>
-            <img
-              src="https://flagcdn.com/w320/ar.png"
-              alt="Argentina"
-              className={styleL.flag}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={styleL.title_text}>
         <h1>Sobre mi</h1>
       </div>
       <div className={styleL.about_container} id="about">

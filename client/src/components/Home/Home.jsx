@@ -29,10 +29,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getCountries());
-  }, []);
-
-  useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
     setCountriesList(pages.slice(operationA, operationB));

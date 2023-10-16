@@ -26,3 +26,14 @@
   width: 12vw;
   height: 8vh;
 }
+@media screen and (max-width: 930px) {
+  .card_container {
+    width: 12vw;
+    height: 10vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  .options {
+    display: none;
+  }
+}

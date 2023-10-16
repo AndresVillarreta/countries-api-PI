@@ -34,9 +34,6 @@ export default function Nav() {
     <div className={styleNav.container}>
       <div className={styleNav.logo}>COUNTRIES API</div>
       <div className={info ? styleNav.links : styleNav.noLinks}>
-        <NavLink className={styleNav.nl} onClick={scrollHow}>
-          <p>¿Como funciona?</p>
-        </NavLink>
         <NavLink className={styleNav.nl} onClick={scrollAbout}>
           <p>Sobre mi</p>
         </NavLink>
