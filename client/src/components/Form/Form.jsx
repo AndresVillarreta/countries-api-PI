@@ -5,57 +5,48 @@ import { useEffect, useState } from "react";
 import { getCountries } from "../../redux/actions";
 import axios from "axios";
 import validation from "./validation";
+import useForm from "./hook/useForm";
 
 export default function Form() {
   const { countries } = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  //seccion de form
-  const [form, setForm] = useState({
-    name: "",
-    difficulty: "",
-    duration: "",
-    season: "",
-    countries: [],
-  });
-  const [errors, setErrors] = useState({});
-  const [errorCountry, setErrorCountry] = useState(false);
+  const {
+    name,
+    difficulty,
+    duration,
+    season,
+    errorName,
+    errorDifficulty,
+    errorDuration,
+    errorSeason,
+    errorCountries,
+    changeDifficulty,
+    changeDuration,
+    changeSeason,
+    changeCountries,
+    changeName,
+    savedCountries,
+    deleteSelectedCountries,
+    form,
+  } = useForm();
 
   useEffect(() => {
     dispatch(getCountries());
   }, []);
 
-  const [selectedCountries, setSelectedCountries] = useState([]);
-
-  const selectCountry = (e) => {
-    if (
-      selectedCountries.includes(e.target.value) ||
-      e.target.value === "Select"
-    ) {
-      return;
-    }
-    setSelectedCountries([...selectedCountries, e.target.value]);
-    setForm({
-      ...form,
-      countries: [...form.countries, e.target.value],
-    });
-  };
-
-  useEffect(() => {
-    if (selectedCountries.length === 0) {
-      setErrorCountry(() => true);
-    } else {
-      setErrorCountry(() => false);
-    }
-  }, [selectedCountries]);
-
   const submitActivity = (e) => {
     e.preventDefault();
-    const val = validation(form);
-    if (val === true) {
-      postActivity();
+    if (
+      form.name === "" ||
+      form.difficulty === "" ||
+      form.duration === "" ||
+      form.season === ""
+    ) {
+      window.alert("Please complete all the fields");
+    } else if (errorName || errorDifficulty || errorDuration || errorSeason) {
+      window.alert("Please complete all the fields correctly");
     } else {
-      console.log(val, "no");
+      postActivity();
     }
   };
 
@@ -69,32 +60,6 @@ export default function Form() {
     } catch (error) {
       window.alert(error);
     }
-  };
-  const deleteCountry = (event) => {
-    setSelectedCountries(
-      selectedCountries.filter((e) => e !== event.target.textContent)
-    );
-    setForm({
-      ...form,
-      countries: selectedCountries.filter(
-        (e) => e !== event.target.textContent
-      ),
-    });
-  };
-
-  const handleChange = (e) => {
-    setForm((prev) => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value,
-      };
-    });
-    setErrors(
-      validation({
-        ...form,
-        [e.target.name]: e.target.value,
-      })
-    );
   };
 
   return (
@@ -112,22 +77,44 @@ export default function Form() {
         <article className={styleF.form_box}>
           <form onSubmit={submitActivity} className={styleF.form}>
             <label htmlFor="name">
-              Name {errors.name ? <span>{errors.name}</span> : ""}
+              Name {errorName ? <span>{errorName}</span> : ""}
             </label>
-            <input type="text" name="name" onChange={handleChange} />
+            <input
+              type="text"
+              name="name"
+              onChange={changeName}
+              value={name}
+              style={errorName ? { border: "1px solid red" } : {}}
+            />
             <label htmlFor="difficulty">
-              Difficulty{" "}
-              {errors.difficulty ? <span>{errors.difficulty}</span> : ""}
+              Difficulty {errorDifficulty ? <span>{errorDifficulty}</span> : ""}
             </label>
-            <input type="number" name="difficulty" onChange={handleChange} />
+            <input
+              type="number"
+              name="difficulty"
+              onChange={changeDifficulty}
+              value={difficulty}
+              style={errorDifficulty ? { border: "1px solid red" } : {}}
+            />
             <label htmlFor="duration">
-              Duration {errors.duration ? <span>{errors.duration}</span> : ""}
+              Duration {errorDuration ? <span>{errorDuration}</span> : ""}
             </label>
-            <input type="time" name="duration" onChange={handleChange} />
+            <input
+              type="time"
+              name="duration"
+              onChange={changeDuration}
+              value={duration}
+              style={errorDuration ? { border: "1px solid red" } : {}}
+            />
             <label htmlFor="season">
-              Season {errors.season ? <span>{errors.season}</span> : ""}
+              Season {errorSeason ? <span>{errorSeason}</span> : ""}
             </label>
-            <select name="season" onChange={handleChange}>
+            <select
+              name="season"
+              onChange={changeSeason}
+              value={season}
+              style={errorSeason ? { border: "1px solid red" } : {}}
+            >
               <option value="Select">Select</option>
               <option value="Verano">Verano</option>
               <option value="Otoño">Otoño</option>
@@ -135,17 +122,13 @@ export default function Form() {
               <option value="Primavera">Primavera</option>
             </select>
             <label htmlFor="countries">
-              Countries
-              {errorCountry ? (
-                <span>You must have almost one Country</span>
-              ) : (
-                ""
-              )}
+              Countries {errorCountries ? <span>{errorCountries}</span> : ""}
             </label>
             <select
               name="countries"
-              onChange={selectCountry}
+              onChange={changeCountries}
               className={styleF.select}
+              style={errorCountries ? { border: "1px solid red" } : {}}
             >
               <option value="Select">Select</option>
               {countries?.map((e) => (
@@ -157,8 +140,12 @@ export default function Form() {
             <button type="submit">Create</button>
           </form>
           <div className={styleF.selection}>
-            {selectedCountries.map((e) => (
-              <div className={styleF.selected} key={e} onClick={deleteCountry}>
+            {savedCountries?.map((e) => (
+              <div
+                className={styleF.selected}
+                key={e}
+                onClick={deleteSelectedCountries}
+              >
                 {e}
               </div>
             ))}
