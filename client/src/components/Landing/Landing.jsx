@@ -72,12 +72,13 @@ export default function Landing() {
           <div className={styleL.about_text}>
             <h1>Andres Villarreta</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-              rerum atque optio neque
+              Estudiante Desarrollador Web Full Stack, con una gran pasión por
+              el codigo, me centralizo mas en el lado del Front-End.
             </p>
+            <br />
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, eos
-              maiores magni impedit
+              Este es mi Proyecto Individual, en el que podras ver y saber mas
+              sobre los paises de la API. ¡Disfrutalo!
             </p>
           </div>
         </div>
@@ -85,9 +86,18 @@ export default function Landing() {
       <footer>
         <div className={styleL.contact_footer}>
           <h2>Contacto</h2>
-          <p>Email: 7Fz7V@example.com</p>
-          <p>Phone: 123456789</p>
-          <p>LinkedIn: Andres Villarreta</p>
+          <p>Email: andresvillarreta1@proton.me</p>
+          <p>Phone: +58-412-175-7642</p>
+          <p>
+            LinkedIn:{" "}
+            <a
+              href="https://www.linkedin.com/in/andres-villarreta-ab55b1275/"
+              target="_blank"
+              style={{ color: "white" }}
+            >
+              AndresVillarreta
+            </a>
+          </p>
         </div>
         <div>
           <p>Copyright 2023</p>

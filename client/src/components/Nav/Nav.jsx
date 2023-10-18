@@ -14,15 +14,9 @@ export default function Nav() {
       setInfo(false);
     }
   }, [location.pathname]);
-  const scrollHow = (e) => {
-    window.scrollTo({
-      top: 780,
-      behavior: "smooth",
-    });
-  };
   const scrollAbout = (e) => {
     window.scrollTo({
-      top: 1500,
+      top: 840,
       behavior: "smooth",
     });
   };
