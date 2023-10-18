@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCountries } from "../../redux/actions";
 import axios from "axios";
-import validation from "./validation";
-import useForm from "./hook/useForm";
+import useForm from "../hooks/useForm.jsx";
 
 export default function Form() {
   const { countries } = useSelector((state) => state);
@@ -28,6 +27,7 @@ export default function Form() {
     savedCountries,
     deleteSelectedCountries,
     form,
+    resetForm,
   } = useForm();
 
   useEffect(() => {
@@ -56,6 +56,8 @@ export default function Form() {
         ...form,
         difficulty: Number(form.difficulty),
       });
+      resetForm();
+      document.getElementById("countries").value = "Select";
       window.alert(response.data.Success);
     } catch (error) {
       window.alert(error);
@@ -125,6 +127,7 @@ export default function Form() {
               Countries {errorCountries ? <span>{errorCountries}</span> : ""}
             </label>
             <select
+              id="countries"
               name="countries"
               onChange={changeCountries}
               className={styleF.select}

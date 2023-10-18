@@ -1,11 +1,12 @@
 import styleC from "./Cards.module.css";
-import { getCountries, onSearch } from "../../redux/actions";
+import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import search from "../../assets/search.svg";
 import { useEffect, useState } from "react";
-import usePagination from "./hooks/usePagination";
-import useSearch from "./hooks/useSearch";
+import usePagination from "../hooks/usePagination";
+import useSearch from "../hooks/useSearch";
+import Pagination from "../Pagination/Pagination";
 
 export default function Cards() {
   const { thisPage, pagination, changePage } = usePagination();
@@ -59,57 +60,12 @@ export default function Cards() {
             ))
           )}
         </div>
-        <div className={styleC.pagination}>
-          {thisPage > 1 ? (
-            <button value={thisPage - 1} onClick={changePage}>
-              &lt;
-            </button>
-          ) : (
-            ""
-          )}
-          {thisPage > 3 && thisPage <= pagination ? (
-            <button value={1} onClick={changePage}>
-              1
-            </button>
-          ) : (
-            ""
-          )}
-          {/* {thisPage > 1 ? <button>{thisPage - 1}</button> : ""} */}
-          <button className={styleC.thispage}>{thisPage}</button>
-          {thisPage + 1 <= pagination ? (
-            <button value={thisPage + 1} onClick={changePage}>
-              {thisPage + 1}
-            </button>
-          ) : (
-            ""
-          )}
-          {thisPage + 2 < pagination ? (
-            <button value={thisPage + 2} onClick={changePage}>
-              {thisPage + 2}
-            </button>
-          ) : (
-            ""
-          )}
-          {thisPage + 3 < pagination ? (
-            <button className={styleC.more_page}>...</button>
-          ) : (
-            ""
-          )}
-          {thisPage + 1 < pagination ? (
-            <button value={pagination} onClick={changePage}>
-              {pagination}
-            </button>
-          ) : (
-            ""
-          )}
-          {thisPage < pagination ? (
-            <button value={thisPage + 1} onClick={changePage}>
-              &gt;
-            </button>
-          ) : (
-            ""
-          )}
-        </div>
+        <Pagination
+          pagination={pagination}
+          changePage={changePage}
+          thisPage={thisPage}
+          styleC={styleC}
+        />
       </div>
     </div>
   );

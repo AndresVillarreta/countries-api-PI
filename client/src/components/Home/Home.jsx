@@ -1,22 +1,17 @@
 import styleH from "./Home.module.css";
-import search from "../../assets/search.svg";
 import options from "../../assets/options.svg";
 import filter from "../../assets/filter.svg";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCountries,
-  filterRegion,
-  sortCountries,
-  onSearch,
-} from "../../redux/actions";
+import { filterRegion, sortCountries } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import Cards from "../Cards/Cards";
+import usePagination from "../hooks/usePagination";
 
 export default function Home() {
+  const { thisPage, setPage1 } = usePagination();
   const [option, setOptions] = useState(true);
-  const [thisPage, setThisPage] = useState(1);
   const [sorted, setSorted] = useState(false);
   const [pagination, setPagination] = useState(1);
   const [countriesList, setCountriesList] = useState([]);
@@ -33,13 +28,11 @@ export default function Home() {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
     setCountriesList(pages.slice(operationA, operationB));
-    setPagination(Math.ceil(pages.length / 10));
   }, [countries]);
 
   useEffect(() => {
     const operationA = thisPage * 10 - 10;
     const operationB = thisPage * 10;
-    setPagination(Math.ceil(pages.length / 10));
     setCountriesList(pages.slice(operationA, operationB));
   }, [pages]);
 
@@ -49,35 +42,18 @@ export default function Home() {
     setCountriesList(pages.slice(operationA, operationB));
   }, [thisPage]);
 
-  const changePage = (e) => {
-    const newPage = Number(e.target.value);
-    setThisPage(newPage);
-  };
   const orderByRegion = (e) => {
     dispatch(filterRegion(e.target.value));
-    setPagination(Math.ceil(pages.length / 10));
-    setThisPage(1);
+    /* setPagination(Math.ceil(pages.length / 10)); */
+    setPage1();
   };
   const orderCountries = (e) => {
-    setThisPage(1);
+    setPage1();
     dispatch(sortCountries(e.target.value));
-    setPagination(Math.ceil(pages.length / 10));
+    /* setPagination(Math.ceil(pages.length / 10)); */
     setSorted(!sorted);
   };
 
-  const handleSearch = (e) => {
-    dispatch(onSearch(e.target.value));
-    setThisPage(1);
-  };
-  const clickSearch = (e) => {
-    console.log(e.target.value);
-    if (!e.target.value) {
-      return;
-    } else {
-      dispatch(onSearch(e.target.value));
-      setThisPage(1);
-    }
-  };
   return (
     <div className={styleH.container}>
       <div className={option ? styleH.options : styleH.noOptions}>

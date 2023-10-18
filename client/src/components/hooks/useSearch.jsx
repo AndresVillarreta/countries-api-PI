@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onSearch } from "../../../redux/actions";
+import { onSearch } from "../../redux/actions";
 import usePagination from "./usePagination";
 
 export default function useSearch() {

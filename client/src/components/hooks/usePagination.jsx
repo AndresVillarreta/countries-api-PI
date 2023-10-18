@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCountries, onSearch } from "../../../redux/actions";
+import { getCountries, onSearch } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function usePagination() {
@@ -21,8 +21,11 @@ export default function usePagination() {
   }, [pages]);
 
   const changePage = (e) => {
-    const newPage = Number(e.target.value);
-    setThisPage(newPage);
+    setThisPage(() => {
+      const newPage = Number(e.target.value);
+      setPagination(Math.ceil(pages.length / 10));
+      return newPage;
+    });
   };
   const setPage1 = () => {
     setThisPage(1);

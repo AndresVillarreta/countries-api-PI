@@ -5,7 +5,7 @@ import {
   validateDuration,
   validateSeason,
   validateCountries,
-} from "../validation";
+} from "../Form/validation";
 export default function useForm() {
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -70,6 +70,21 @@ export default function useForm() {
       return newCountries;
     });
   };
+  const resetForm = () => {
+    setName("");
+    setDifficulty("");
+    setDuration("");
+    setSeason("");
+    setFormCountries([]);
+    setSavedCountries([]);
+    setForm({
+      name: "",
+      difficulty: "",
+      duration: "",
+      season: "",
+      countries: [],
+    });
+  };
 
   return {
     name,
@@ -90,5 +105,6 @@ export default function useForm() {
     savedCountries,
     deleteSelectedCountries,
     form,
+    resetForm,
   };
 }
