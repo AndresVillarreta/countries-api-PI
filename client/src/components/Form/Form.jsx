@@ -140,7 +140,9 @@ export default function Form() {
                 </option>
               ))}
             </select>
-            <button type="submit">Create</button>
+            <button type="submit" className={styleF.btn}>
+              Create
+            </button>
           </form>
           <div className={styleF.selection}>
             {savedCountries?.map((e) => (

@@ -2,6 +2,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 92vh;
+  animation: spawn 1s ease-in-out forwards;
+}
+@keyframes spawn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .img_container {
   display: flex;
@@ -12,6 +21,16 @@
 }
 .img_container img {
   width: 125%;
+  animation: rotation 360s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .form_container {
   display: flex;
@@ -88,4 +107,24 @@
 
 span {
   color: red;
+}
+
+.btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 5vh;
+  border: none;
+  color: white;
+  background: #4b88ce;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 2vw;
+}
+.btn:hover {
+  background: #34669e;
 }

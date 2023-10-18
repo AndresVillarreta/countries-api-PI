@@ -44,13 +44,11 @@ export default function Home() {
 
   const orderByRegion = (e) => {
     dispatch(filterRegion(e.target.value));
-    /* setPagination(Math.ceil(pages.length / 10)); */
     setPage1();
   };
   const orderCountries = (e) => {
     setPage1();
     dispatch(sortCountries(e.target.value));
-    /* setPagination(Math.ceil(pages.length / 10)); */
     setSorted(!sorted);
   };
 
@@ -85,7 +83,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={styleH.filters}>
+          {/*           <div className={styleH.filters}>
             <div className={styleH.filters_space}>
               <img srcSet={filter} alt="filter" width={"40px"} />
               <div className={styleH.space_filter}>
@@ -102,7 +100,7 @@ export default function Home() {
                 </select>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className={styleH.filters}>
             <div className={styleH.filters_space}>
               <img srcSet={filter} alt="filter" width={"40px"} />
