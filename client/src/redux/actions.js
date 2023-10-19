@@ -11,7 +11,9 @@ import axios from "axios";
 export function getCountries() {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/countries");
+      const { data } = await axios.get(
+        "https://countries-api-server.onrender.com/countries"
+      );
       if (!data) {
         console.log("error");
       } else {
@@ -51,7 +53,7 @@ export function onSearch(country) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/countries?name=${country}`
+        `https://countries-api-server.onrender.com/countries?name=${country}`
       );
       if (!data) {
         console.log("error");
@@ -70,7 +72,9 @@ export function onSearch(country) {
 export function getDetail(id) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
+      const { data } = await axios.get(
+        `https://countries-api-server.onrender.com/countries/${id}`
+      );
       if (!data) {
         console.log("error");
       } else {
