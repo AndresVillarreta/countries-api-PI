@@ -52,10 +52,13 @@ export default function Form() {
 
   const postActivity = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/activities", {
-        ...form,
-        difficulty: Number(form.difficulty),
-      });
+      const response = await axios.post(
+        "https://countries-api-server.onrender.com/activities",
+        {
+          ...form,
+          difficulty: Number(form.difficulty),
+        }
+      );
       resetForm();
       document.getElementById("countries").value = "Select";
       window.alert(response.data.Success);
