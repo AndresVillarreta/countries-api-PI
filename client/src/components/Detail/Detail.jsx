@@ -67,7 +67,7 @@ export default function Detail(props) {
               <b>Capital:</b> {detail?.capital}
             </p>
             <p>
-              <b>Subregion:</b>
+              <b>Subregion: </b>
               {detail?.subregion}
             </p>
             <p>
