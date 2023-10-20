@@ -45,6 +45,10 @@
   transition: color 0.3s ease;
   height: 2vw;
 }
+.links2 a {
+  width: 100%;
+  height: 100%;
+}
 .nl2:hover {
   color: #2f98ee;
 }
@@ -63,6 +67,9 @@
 .logo:hover {
   color: #747bff;
 }
+.option_button {
+  display: none;
+}
 
 @media screen and (max-width: 500px) {
   .links {
@@ -75,6 +82,22 @@
   }
   .container {
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+  }
+  .links2 a {
+    width: 100%;
+    height: 100%;
+  }
+  .option_button {
+    display: flex;
+    margin: 0px;
+    height: 5vh;
+    background: #2f98ee;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    font-size: larger;
+    border-radius: 20px;
   }
 }

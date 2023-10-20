@@ -31,9 +31,6 @@ export default function useForm() {
     setForm({ ...form, name: e.target.value });
     setErrorName(validateName(e.target.value));
   };
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
   const changeDifficulty = (e) => {
     setDifficulty(e.target.value);
     setForm({ ...form, difficulty: e.target.value });

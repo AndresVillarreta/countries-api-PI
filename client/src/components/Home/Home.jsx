@@ -13,7 +13,6 @@ export default function Home() {
   const { thisPage, setPage1 } = usePagination();
   const [option, setOptions] = useState(true);
   const [sorted, setSorted] = useState(false);
-  const [pagination, setPagination] = useState(1);
   const [countriesList, setCountriesList] = useState([]);
 
   const dispatch = useDispatch();
@@ -23,6 +22,19 @@ export default function Home() {
   const openOptions = () => {
     setOptions(!option);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("qlqqq");
+      if (window.innerWidth > 500) {
+        setOptions(false);
+      } else {
+        setOptions(option);
+      }
+
+      window.addEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const operationA = thisPage * 10 - 10;

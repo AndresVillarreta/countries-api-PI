@@ -14,8 +14,8 @@ export default function Landing() {
       scrollWatch();
     };
   });
+
   const scrollWatch = (e) => {
-    console.log(window.document.onscrolltop);
     if (document.documentElement.scrollTop > 200) {
       setScroll(true);
     } else {

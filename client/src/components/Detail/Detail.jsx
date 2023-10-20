@@ -10,7 +10,6 @@ export default function Detail(props) {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getDetail(id));
-    console.log(detail);
     return () => {
       dispatch({ type: "GET_DETAIL", payload: [] });
     };

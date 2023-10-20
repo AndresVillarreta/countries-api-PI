@@ -59,7 +59,7 @@
   background: #f2f2f2;
   border-radius: 0px 60px 60px 0px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
-  animation: movementIn 0.8s ease-in-out forwards;
+  animation: movementIn 0.8s ease-in-out;
   overflow: hidden;
 }
 .no_option_container {
@@ -67,9 +67,9 @@
   justify-content: space-around;
   align-self: center;
   flex-direction: column;
-  width: 85%;
+  width: 42%;
   height: 75vh;
-  animation: movement 0.8s ease-in-out forwards;
+  animation: movement 0.8s ease-in-out;
   overflow: hidden;
   background: #f2f2f2;
   border-radius: 0px 60px 60px 0px;
@@ -144,5 +144,37 @@ option {
   font-size: 1.5vw;
 }
 
-@media screen and (max-width: 930) {
+@media screen and (max-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+  .option_container {
+    width: 100%;
+    height: 20vh;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    flex-direction: row;
+    align-items: center !important;
+    justify-content: center;
+  }
+  .option_container img {
+    display: none;
+  }
+  .options {
+    width: 100vw !important;
+    height: 40vh !important;
+  }
+  .filters_space {
+    width: 210px;
+  }
+  .space_filter {
+    width: 500px;
+  }
+  .space_filter select {
+    width: 200px;
+    height: 50px;
+  }
+  .create_activity {
+    display: none;
+  }
 }

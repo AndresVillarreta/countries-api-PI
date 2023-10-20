@@ -45,7 +45,7 @@ export default function Cards() {
           <input type="text" placeholder="Search" onChange={handleSearch} />
           <img src={search} alt="search" onClick={clickSearch} />
         </div>
-        <div className={styleC.card_container}>
+        <div className={styleC.cards_container}>
           {!pages ? (
             <>LOADING</>
           ) : (

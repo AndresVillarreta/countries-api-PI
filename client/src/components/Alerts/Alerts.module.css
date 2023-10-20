@@ -1,0 +1,54 @@
+.error {
+  width: 40vw;
+  background: rgba(255, 0, 0, 0.4);
+  color: black;
+  border-radius: 12px;
+  height: 8vh;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border: 0.2px ridge rgba(0, 0, 0, 0.317);
+  animation: spawnIn 3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.success {
+  width: 40vw;
+  background: rgba(0, 255, 68, 0.4);
+  color: black;
+  border-radius: 12px;
+  height: 8vh;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border: 0.2px ridge rgba(0, 104, 10, 0.494);
+  animation: spawnIn 3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@keyframes spawnIn {
+  0% {
+    display: flex;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  50% {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}

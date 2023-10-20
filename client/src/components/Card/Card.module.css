@@ -36,4 +36,17 @@
   .options {
     display: none;
   }
+  .card_container {
+    width: 30vw !important;
+    padding: 1rem 0rem 1rem 0rem;
+    overflow: hidden;
+    margin: 60px;
+    transform: scale(1.5);
+  }
+  .card_container img {
+    width: 20vw !important;
+  }
+  .card_container p {
+    font-size: 100%;
+  }
 }

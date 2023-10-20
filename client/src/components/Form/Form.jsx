@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import { getCountries } from "../../redux/actions";
 import axios from "axios";
 import useForm from "../hooks/useForm.jsx";
+import { Alerts } from "../Alerts/Alerts";
+const TIME_ALERT = 2999;
 
 export default function Form() {
+  const [alerts, setAlerts] = useState([]);
   const { countries } = useSelector((state) => state);
   const dispatch = useDispatch();
   const {
@@ -42,12 +45,31 @@ export default function Form() {
       form.duration === "" ||
       form.season === ""
     ) {
-      window.alert("Please complete all the fields");
+      spawnOut([
+        ...alerts,
+        {
+          type: "error",
+          message: "Please complete all the fields",
+        },
+      ]);
     } else if (errorName || errorDifficulty || errorDuration || errorSeason) {
-      window.alert("Please complete all the fields correctly");
+      spawnOut([
+        ...alerts,
+        {
+          type: "error",
+          message: "Please complete all the fields correctly",
+        },
+      ]);
     } else {
       postActivity();
     }
+  };
+
+  const spawnOut = async (arg) => {
+    setAlerts(arg);
+    return setTimeout(() => {
+      setAlerts([]);
+    }, TIME_ALERT);
   };
 
   const postActivity = async () => {
@@ -61,9 +83,21 @@ export default function Form() {
       );
       resetForm();
       document.getElementById("countries").value = "Select";
-      window.alert(response.data.Success);
+      spawnOut([
+        ...alerts,
+        {
+          type: "success",
+          message: "Activity created successfully",
+        },
+      ]);
     } catch (error) {
-      window.alert(error);
+      spawnOut([
+        ...alerts,
+        {
+          type: "error",
+          message: "Error creating activity",
+        },
+      ]);
     }
   };
 
@@ -160,6 +194,10 @@ export default function Form() {
           </div>
         </article>
       </section>
+
+      {alerts?.map((alert, index) => {
+        return <Alerts key={index} type={alert.type} message={alert.message} />;
+      })}
     </div>
   );
 }
