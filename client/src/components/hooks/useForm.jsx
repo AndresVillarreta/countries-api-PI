@@ -50,6 +50,11 @@ export default function useForm() {
     if (e.target.value === "Select") {
       return;
     }
+    const sameCountries = formCountries.includes(e.target.value);
+
+    if (sameCountries) {
+      return;
+    }
     setFormCountries([...formCountries, e.target.value]);
     setSavedCountries((prev) => {
       const newCountries = [...prev, e.target.value];

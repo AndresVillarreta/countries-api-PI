@@ -35,7 +35,23 @@ export default function Form() {
 
   useEffect(() => {
     dispatch(getCountries());
+    document.getElementById("submitButton").disabled = true;
   }, []);
+
+  useEffect(() => {
+    if (
+      form.name !== "" &&
+      form.difficulty !== "" &&
+      form.duration !== "" &&
+      form.season !== "" &&
+      form.countries.length !== 0
+    ) {
+      console.log("gaaa");
+      document.getElementById("submitButton").disabled = false;
+    } else {
+      document.getElementById("submitButton").disabled = true;
+    }
+  }, [form]);
 
   const submitActivity = (e) => {
     e.preventDefault();
@@ -177,7 +193,18 @@ export default function Form() {
                 </option>
               ))}
             </select>
-            <button type="submit" className={styleF.btn}>
+            <button
+              type="submit"
+              className={
+                form.name === "" ||
+                form.difficulty === "" ||
+                form.duration === "" ||
+                form.season === ""
+                  ? styleF.btnDisabled
+                  : styleF.btn
+              }
+              id={"submitButton"}
+            >
               Create
             </button>
           </form>

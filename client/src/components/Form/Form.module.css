@@ -125,6 +125,22 @@ span {
   transition: all 0.4s ease;
   font-size: 2vw;
 }
+.btnDisabled {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 5vh;
+  border: 1px solid gray;
+  color: white;
+  background: #91a8c3;
+  border-radius: 20px;
+  cursor: not-allowed;
+  transition: all 0.4s ease;
+  font-size: 2vw;
+}
 .btn:hover {
   background: #34669e;
 }
