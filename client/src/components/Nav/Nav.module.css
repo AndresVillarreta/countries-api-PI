@@ -39,6 +39,13 @@
   color: black;
   transition: color 0.3s ease;
 }
+.nlAboutMe {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+  width: 100%;
+  margin-left: 81rem;
+}
 .nl2 {
   text-decoration: none;
   color: white;
