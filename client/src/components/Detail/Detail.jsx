@@ -21,7 +21,7 @@ export default function Detail(props) {
         <h1>Activities</h1>
         <div className={styleD.activities_box}>
           {detail?.Activities?.map((e) => (
-            <div className={styleD.activity}>
+            <div className={styleD.activity} key={e.id}>
               <h3>{e.name}</h3>
               <p>
                 <b>Difficulty: </b>

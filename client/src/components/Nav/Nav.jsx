@@ -33,7 +33,12 @@ export default function Nav() {
           <p>Sobre mi</p>
         </NavLink>
       </div>
-      <NavLink className={styleNav.nl} to={"/create"}>
+      <NavLink
+        className={
+          location.pathname === "/home" ? styleNav.nl : styleNav.desactivate
+        }
+        to={"/create"}
+      >
         <button className={styleNav.option_button}>Crear Actividad</button>
       </NavLink>
       <div className={info ? styleNav.noLinks : styleNav.links2}>
